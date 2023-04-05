@@ -1,20 +1,28 @@
 package com.example.telematika_homework.controller;
 
 import com.example.telematika_homework.dto.LogIndicator;
-import org.springframework.http.ResponseEntity;
+import com.example.telematika_homework.model.Token;
+import com.example.telematika_homework.service.IndicatorService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/indicators")
 public class IndicationController {
+    private final IndicatorService indicatorService;
+
+    public IndicationController(IndicatorService indicatorService) {
+        this.indicatorService = indicatorService;
+    }
 
     @PostMapping
-    public void sign(@RequestBody LogIndicator logIndicator) {
-
+    public void sign(@RequestBody LogIndicator logIndicator, Authentication authentication) {
+        Token principal= (Token) authentication.getPrincipal();
+        indicatorService.save(principal.getSerialSecret(), logIndicator);
     }
 
     @GetMapping
-    public double avg(){
-
+    public double avg(@PathVariable String serial){
+        return indicatorService.calculateAVGIndicator(serial);
     }
 }
