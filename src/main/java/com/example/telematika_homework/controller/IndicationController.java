@@ -24,7 +24,7 @@ public class IndicationController {
         Token principal= (Token) authentication.getPrincipal();
         indicatorService.save(principal.getSerialSecret(), logIndicator);
     }
-    @GetMapping
+    @GetMapping("/{serial}")
     public double avg(@PathVariable String serial){
         return indicatorService.calculateAVGIndicator(serial);
     }

@@ -2,19 +2,19 @@ package com.example.telematika_homework.service;
 
 import com.example.telematika_homework.model.SerialSecret;
 import com.example.telematika_homework.model.Token;
-import com.example.telematika_homework.repository.SerialSecretRepository;
+import com.example.telematika_homework.repository.SerialSecretRepositary;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
-
+@Service
 public class SerialSecretService {
-    private final SerialSecretRepository serialSecretRepositary;
-
+    private final SerialSecretRepositary serialSecretRepositary;
     private final Integer expiredSec;
 
-    public SerialSecretService(SerialSecretRepository serialSecretRepositary, @Value("%{telematika.security.token-expired}") Integer expiredSec) {
+    public SerialSecretService(SerialSecretRepositary serialSecretRepositary,@Value("%{telematika.security.token-expired}") Integer expiredSec) {
         this.serialSecretRepositary = serialSecretRepositary;
         this.expiredSec = expiredSec;
     }
