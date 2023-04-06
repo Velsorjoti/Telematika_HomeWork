@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class IndicatorService {
-    private IndicatorRepository indicatorRepository;
+    private final IndicatorRepository indicatorRepository;
 
     public IndicatorService(IndicatorRepository indicatorRepository) {
         this.indicatorRepository = indicatorRepository;

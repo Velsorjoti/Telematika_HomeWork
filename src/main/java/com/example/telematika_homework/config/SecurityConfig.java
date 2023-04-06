@@ -27,8 +27,8 @@ public class SecurityConfig {
                 .disable()
                 .anonymous()
                 .and()
-                .formLogin(form -> form
-                        .loginPage("/login").permitAll())
+                .formLogin()
+                .disable()
                 .httpBasic()
                 .disable()
                 .sessionManagement()
@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .and()
                 .addFilterBefore(uuidAuthenticationFilter, ExceptionTranslationFilter.class)
                 .authorizeRequests()
+                .antMatchers("/indicators/{serial}").permitAll()
                 .anyRequest().authenticated();
 
         return httpSecurity.build();

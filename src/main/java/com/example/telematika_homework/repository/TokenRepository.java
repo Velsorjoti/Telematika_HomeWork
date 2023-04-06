@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Repository
-public interface TokenRepositary extends JpaRepository<Token, Long> {
+public interface TokenRepository extends JpaRepository<Token, Long> {
     void deleteAllByExpiredDateIsBefore(Instant now);
 
     Optional<Token> findById(String uuid);
