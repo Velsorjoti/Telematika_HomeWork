@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SerialSecretRepositary extends JpaRepository<SerialSecret, String> {
+   SerialSecret findBySerial(String serial);
 }
